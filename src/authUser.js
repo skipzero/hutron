@@ -1,6 +1,3 @@
-import React, { Component } from 'react';
-import './App.css';
-
 const v3 = require('node-hue-api').v3;
 const discover = v3.discovery;
 const hapi = v3.api;
@@ -40,31 +37,4 @@ async function discoverAndCreateUser() {
   }
 }
 
-
-class App extends Component {
-  constructor() {
-    super();
-    this.switching = this.switching.bind(this);
-    this.state = {
-
-    }
-  }
-
-  switching(e) {
-    e.prevetDefault();
-    if (e.target.checked === true) {
-      discoverAndCreateUser();
-    }
-  }
-
-  render() {
-    return (
-      <div className="App">
-        <input type="checkbox" className="checkbox light-toggle" id="toggle" onChange={this.switching} />
-        <label htmlFor="toggle" className="switch"></label>
-      </div>
-    );
-  }
-}
-
-export default App;
+discoverAndCreateUser();
