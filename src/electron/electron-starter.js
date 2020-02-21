@@ -1,20 +1,22 @@
-//handle setupevents as quickly as possible
-const setupEvents = require("../../installers/setupEvents");
-if (setupEvents.handleSquirrelEvent()) {
-  // squirrel event handled and app will exit in 1000ms, so don't do anything else
-  return;
-}
-
-const electron = require("electron");
+const setupEvents = require('../www4installer/setupEvents');
+const path = require('path');
+const url = require('url');
+const electron = require('electron');
 const menuTemplate = require('./electron-menu');
+
+//handle setupevents as quickly as possible
+function checkEvents () {
+  if (setupEvents.handleSquirrelEvent()) {
+    // squirrel event handled and app will exit in 1000ms, so don't do anything else
+    return;
+  }
+}
+checkEvents();
 
 // Module to control application life.
 const app = electron.app;
 // Module to create native browser window.
 const BrowserWindow = electron.BrowserWindow;
-
-const path = require("path");
-const url = require("url");
 
 const Menu = electron.Menu;
 
@@ -49,8 +51,8 @@ function createWindow() {
   const startUrl =
     process.env.ELECTRON_START_URL ||
     url.format({
-      pathname: path.join(__dirname, "/../../build/index.html"),
-      protocol: "file:",
+      pathname: path.join(__dirname, '/../../build/index.html'),
+      protocol: 'file:',
       slashes: true
     });
 
@@ -58,13 +60,13 @@ function createWindow() {
   mainWindow.loadURL(startUrl);
 
   // When mainWindow is ready
-  mainWindow.once("ready-to-show", () => setTimeout(() =>{
+  mainWindow.once('ready-to-show', () => setTimeout(() =>{
     splashWindow.destroy();
     mainWindow.show();
   }, 1800));
 
   // Emitted when the window is closed.
-  mainWindow.on("closed", function() {
+  mainWindow.on('closed', function() {
     // Dereference the window object, usually you would store windows
     // in an array if your app supports multi windows, this is the time
     // when you should delete the corresponding element.
@@ -75,18 +77,18 @@ function createWindow() {
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
-app.on("ready", () => setTimeout(createWindow));
+app.on('ready', () => setTimeout(createWindow));
 
 // Quit when all windows are closed.
-app.on("window-all-closed", function() {
+app.on('window-all-closed', function() {
   // On OS X it is common for applications and their menu bar
   // to stay active until the user quits explicitly with Cmd + Q
-  if (process.platform !== "darwin") {
+  if (process.platform !== 'darwin') {
     app.quit();
   }
 });
 
-app.on("activate", function() {
+app.on('activate', function() {
   // On OS X it's common to re-create a window in the app when the
   // dock icon is clicked and there are no other windows open.
   if (mainWindow === null) {
