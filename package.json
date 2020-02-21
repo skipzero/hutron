@@ -4,8 +4,8 @@
   "private": true,
   "devDependencies": {
     "electron": "^1.7.9",
-    "foreman": "^2.0.0",
-    "react-scripts": "0.8.5"
+    "foreman": "^3.0.1",
+    "react-scripts": "^3.4.0"
   },
   "dependencies": {
     "axios": "^0.19.2",
