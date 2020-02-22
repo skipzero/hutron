@@ -2,6 +2,9 @@ import React, { Fragment, useEffect, useState } from 'react';
 import * as service from '../../services/apiRequestor';
 import Menu from '../../components/Menu/Menu';
 
+import Console from '../../components/Console/Console';
+import LoadSpinner from '../../components/LoadSpinner/LoadSpinner';
+import JSONContainer from '../JSONContainer/JSONContainer'
 const AppContainer = (props) => {
   const apiUrl = `http://${props.ip}/api/${props.token}`;
 
@@ -55,16 +58,15 @@ const AppContainer = (props) => {
   }
 
   const fetchMenuItems = async (query) => {
-    const result = await service.getJson(`${apiUrl}/${apiPath}`);
+    const result = await service.getJson(`${apiUrl}/${query}`);
 
-    if (resutl[0]) {
+    if (result[0]) {
       throw result[0].error.description;
     }
 
     if (query === 'config') {
       return [];
     }
-
 
     return Object.keys(result).map((item) => ({
       id: item,
@@ -73,7 +75,7 @@ const AppContainer = (props) => {
   };
 
   const fetchHueData = async (query) => {
-    result = await service.getJson(`${apiUrl}/${query}`);
+    const result = await service.getJson(`${apiUrl}/${query}`);
 
     if (result[0]) {
       throw result[0].error.description;
@@ -82,7 +84,7 @@ const AppContainer = (props) => {
   };
 
   const putHueData = async (query, data) => {
-    const url = `${apiUrl}/${menuItem[activeMenu].id}/${query}`;
+    const url = `${apiUrl}/${menuItems[activeMenu].id}/${query}`;
 
     try {
       const result = await service.putJson(url, data);
@@ -94,7 +96,7 @@ const AppContainer = (props) => {
   };
 
   const deleteHueData = async (query, data) => {
-    const url = `${apiUrl}/${menuItem[activeMenu].id}/${query}`;
+    const url = `${apiUrl}/${menuItems[activeMenu].id}/${query}`;
 
     try {
       const result = await service.deleteJson(url, null);
@@ -105,8 +107,8 @@ const AppContainer = (props) => {
     }
   };
 
-  const createNewHueData = async (newhueData) => {
-    const url = `${apiUrl}/${menuItem[activeMenu].id}`;
+  const createNewHueData = async (newHueData) => {
+    const url = `${apiUrl}/${menuItems[activeMenu].id}`;
 
     try {
       const result = await service.putJson(url, newHueData);
@@ -160,7 +162,7 @@ const AppContainer = (props) => {
           writeToConsole={writeToConsole}
           subMenuClick={subMenuClick}
           activeSubMenu={activeSubMenu}
-          showAlertDialog={showAlertDialog}
+          showAlertDialog={props.showAlertDialog}
         />
       </div>
       <Console show={showConsole} toggleConsole={consoleClick} consoleOutput={consoleOutput} />

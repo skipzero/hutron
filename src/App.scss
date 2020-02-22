@@ -1,39 +1,43 @@
-@import styles/colors-dark.scss
+@import './styles/colors-dark.scss';
 
 .App {
   margin: 30px;
   text-align: center;
 }
 
-.switch {
-  background-color: rgba(235, 0, 0, 1);
-  border-radius: 20px;
-  display: inline-block;
-  height: 32px;  transition: all 0.3s;
-  position: relative;
-  width: 80px;
-}
+// TODO: move toggle switch to a better place...
+.toggle-switch {
 
-.switch::after {
-  background-color: #ffffff;
-  border-radius:50%;
-  content: '';
-  height: 30px;
-  left: 1px;
-  position: absolute;
-  top: 1px;
-  transition: all 0.3s;
-  width: 30px;
-}
+  .switch {
+    background-color: rgba(235, 0, 0, 1);
+    border-radius: 20px;
+    display: inline-block;
+    height: 32px;  transition: all 0.3s;
+    position: relative;
+    width: 80px;
+  }
 
-.checkbox:checked + .switch::after {
-  left : 49px;
-}
+  .switch::after {
+    background-color: #ffffff;
+    border-radius:50%;
+    content: '';
+    height: 30px;
+    left: 1px;
+    position: absolute;
+    top: 1px;
+    transition: all 0.3s;
+    width: 30px;
+  }
 
-.checkbox:checked + .switch {
-  background-color: #00aa00;
-}
+  .checkbox:checked + .switch::after {
+    left : 49px;
+  }
 
-.checkbox {
-  display : none;
+  .checkbox:checked + .switch {
+    background-color: #00aa00;
+  }
+
+  .checkbox {
+    display : none;
+  }
 }

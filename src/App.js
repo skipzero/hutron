@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import AppContainer from './pages/AppContainer/AppContainer';
 import Authenticate from './pages/Authenticate/Authenticate';
+import swal from 'sweetalert';
 import './App.scss';
 
 const App = () => {
@@ -19,16 +20,16 @@ const App = () => {
     localStorage.setItem('hueAuthToken', token);
     setHueIp(ip);
     setAuthToken(token);
-  }
+  };
 
   const resetAuth = () => {
     localStorage.removeItem('hueIp');
     localStorage.removeItem('hueAuthToken');
     setHueIp(null);
     setAuthToken(null);
-  }
+  };
 
-  const showAlertBox = async (title, hint, action) => {
+  const showAlertDialog = async (title, hint, action) => {
     const willDelete = await swal({
       title,
       text: hint,

@@ -12,6 +12,7 @@
     "concurrently": "^5.1.0",
     "hue-sdk": "^0.1.0",
     "node-hue-api": "^4.0.5",
+    "node-sass": "^4.13.1",
     "react": "^16.1.1",
     "react-dom": "^16.1.1"
   },
@@ -25,5 +26,17 @@
     "eject": "react-scripts eject",
     "electron": "electron .",
     "dev": "nf start -p 3000"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }
