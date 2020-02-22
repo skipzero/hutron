@@ -39,3 +39,9 @@ export const putJson = async (url, data) => {
   const request = await makeReq(url, settings('PUT', data));
   return request.json();
 }
+
+// DELETE method
+export const deleteJson = async (url, data) => {
+  const request = await makeReq(url, settings('DELETE', data));
+  return request.json();
+}
