@@ -1,24 +1,24 @@
 import React from 'react';
 import AuthButton from '../AuthButton/AuthButton';
-import './loaderSpinner.scss';
+import './LoadSpinner.scss';
 
-const LoaderSpinner = (props) => {
+const LoadSpinner = (props) => {
   if (props.isLoading) {
 
     return (
-      <div className='loaderSpinnerWrapper'>
+      <div className='loadSpinnerWrapper'>
         <div className='lds-ripple'>
           <div />
           <div />
         </div>
-        <div className='loaderSpinnerText'>Loading Hue resources</div>
+        <div className='loadSpinnerText'>Loading Hue resources</div>
       </div>
     );
   }
 
   return (
-    <div className='loaderSpinnerWrapper'>
-      <div className='loaderSpinnerText'>
+    <div className='loadSpinnerWrapper'>
+      <div className='loadSpinnerText'>
         An error occured:
         <br />
         {props.failMessage}
@@ -28,4 +28,4 @@ const LoaderSpinner = (props) => {
   );
 };
 
-export default LoaderSpinner;
+export default LoadSpinner;

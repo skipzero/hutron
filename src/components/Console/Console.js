@@ -3,8 +3,7 @@ import moment from 'moment';
 import { Resizable } from 're-resizable';
 import './console.scss';
 
-const Console = (props) => {
-  const { consoleOutput, show } = props;
+export const Console = (props) => {
   const [showFormatted, setShowFormatted] = useState(true);
   const [currHeight, setCurrHeight] = useState(300);
   const consoleContainerRef = useRef(null);
@@ -15,15 +14,15 @@ const Console = (props) => {
 
   const scrollToBottom = () => {
     consoleContainerRef.current.scrollTo(0, consoleContainerRef.current.scrollHeight);
-  }
+  };
 
   const toggleFormatting = () => {
-    setShowFormatted((prevFormatted) => !prevFormatted;
-  }
+    setShowFormatted((prevFormatted) => !prevFormatted)
+  };
 
   const consoleOutput = () => {
     return props.consoleOutput.map((out, index) => {
-      <ConsoleOutput
+      return <ConsoleOutput
         key={index}
         output={out}
         formatted={showFormatted}
@@ -32,19 +31,19 @@ const Console = (props) => {
   };
 
   const formattedIcon = showFormatted ? 'notes' : 'sort';
-  const headerClasses = show ? 'consoleHeader' : 'consoleHeaderShow';
-  const dataTitle = showformatted ? 'No Formatting' : 'Formatting';
+  const headerClasses = props.show ? 'consoleHeader' : 'consoleHeaderShow';
+  const dataTitle = showFormatted ? 'No Formatting' : 'Formatting';
 
-  const handleHeightChange = (diameter) => {
+  const handleHeightChange = (d) => {
     setCurrHeight((prevHeight) => prevHeight + d.height);
   };
 
   return (
-    <Resizeable
+    <Resizable
       className='consoleWrapper'
-      size={{ width: '100%', height: show ? currentHight : 30 }}
-      onResizeStop={handleChangeheight}
-      enable={{ top: show }}
+      size={{ width: '100%', height: props.show ? currHeight : 30 }}
+      onResizeStop={handleHeightChange}
+      enable={{ top: props.show }}
       maxHeight={760}
       minHeight={30}
     >
@@ -58,21 +57,21 @@ const Console = (props) => {
           <i className='material-icons'>{formattedIcon}</i>
         </div>
       </div>
-      <div ref={consoleContainerRep} className='consoleContent'>
+      <div ref={consoleContainerRef} className='consoleContent'>
         {consoleOutput()}
       </div>
-    </Resizeable>
+    </Resizable>
   )
 }
 
-const consoleOutput = (props) => {
+const ConsoleOutput = (props) => {
   const now = moment().format('hh:mm:ss a');
 
   const formattedConsoleOutput = () => {
     const rawConsoleOutput = () => (
       <tbody>
         {formattedConsoleRow(now, '')}
-        {formattedConsoleRow('', JSON.stringify(props.output, null, 2)}
+        {formattedConsoleRow('', JSON.stringify(props.output, null, 2))}
 
       </tbody>
     );
@@ -88,7 +87,7 @@ const consoleOutput = (props) => {
         return (
           <tbody>
             {formattedConsoleRow(now, 'success')}
-            {formattedConsoleRow('', JSON.stringify(props.output[0][logtype], null, 2))}
+            {formattedConsoleRow('', JSON.stringify(props.output[0][logType], null, 2))}
           </tbody>
         );
       }
@@ -117,6 +116,4 @@ const consoleOutput = (props) => {
   );
 
   return <div className='outputWrapper'>{formattedConsoleOutput()}</div>;
-}
-
-export default Console;
+};

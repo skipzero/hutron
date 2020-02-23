@@ -1,10 +1,11 @@
 import React, { Fragment, useEffect, useState } from 'react';
-import * as service from '../../services/apiRequestor';
+import * as service from '../../services/apiRequestors';
 import Menu from '../../components/Menu/Menu';
 
-import Console from '../../components/Console/Console';
+// import * as Console from '../../components/Console/Console';
 import LoadSpinner from '../../components/LoadSpinner/LoadSpinner';
-import JSONContainer from '../JSONContainer/JSONContainer'
+import JSONContainer from '../JSONContainer/JSONContainer';
+
 const AppContainer = (props) => {
   const apiUrl = `http://${props.ip}/api/${props.token}`;
 
@@ -165,7 +166,6 @@ const AppContainer = (props) => {
           showAlertDialog={props.showAlertDialog}
         />
       </div>
-      <Console show={showConsole} toggleConsole={consoleClick} consoleOutput={consoleOutput} />
     </Fragment>
   );
 };
