@@ -88,7 +88,7 @@ const Authenticate = (props) => {
       <div className='authHeadline'>Developer name</div>
       <input
         value={devName}
-        onChange={onInputIpChange(setdevName)}
+        onChange={onInputIpChange(setDevName)}
         type='text'
         className='authInput'
         placeholder='Choose a developer name'
