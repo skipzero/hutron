@@ -47,14 +47,14 @@ const Authenticate = (props) => {
   const startAuthenticating = () => {
     const probe = setInterval(() => {
       if (authenticateWaiter) {
-        authorizeUser();
+        authoriseUser();
       } else {
         clearInterval(probe);
       }
     }, 1500);
   };
 
-  const authorizeUser = async () => {
+  const authoriseUser = async () => {
     try {
       const result = await service.postJson(`http://${inputIp}/api`, {
         deviceType: `hutron#${devName}`,
@@ -80,9 +80,18 @@ const Authenticate = (props) => {
       </div>
       <input
         value={inputIp}
-        onChange={onInputIpChange(setDevName)}
+        onChange={onInputIpChange(setInputIp)}
         className='authInput'
-        placeholder='enter developer name...'
+        placeholder='127.0.0.1'
+      />
+
+      <div className='authHeadline'>Developer name</div>
+      <input
+        value={devName}
+        onChange={onInputIpChange(setdevName)}
+        type='text'
+        className='authInput'
+        placeholder='Choose a developer name'
       />
 
       <AuthButton onClick={validateInput} />
