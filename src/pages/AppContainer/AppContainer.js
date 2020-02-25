@@ -2,7 +2,7 @@ import React, { Fragment, useEffect, useState } from 'react';
 import * as service from '../../services/apiRequestors';
 import Menu from '../../components/Menu/Menu';
 
-// import * as Console from '../../components/Console/Console';
+import * as Console from '../../components/Console/Console';
 import LoadSpinner from '../../components/LoadSpinner/LoadSpinner';
 import JSONContainer from '../JSONContainer/JSONContainer';
 
@@ -166,6 +166,7 @@ const AppContainer = (props) => {
           showAlertDialog={props.showAlertDialog}
         />
       </div>
+      <Console show={showConsole} toggleConsole={consoleClick} consoleOutput={consoleOutput} />
     </Fragment>
   );
 };

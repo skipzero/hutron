@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import moment from 'moment';
 import { Resizable } from 're-resizable';
-import './console.scss';
+import './Console.scss';
 
 export const Console = (props) => {
   const [showFormatted, setShowFormatted] = useState(true);
@@ -10,7 +10,7 @@ export const Console = (props) => {
 
   useEffect(() => {
     scrollToBottom();
-  }, [consoleOutput]);
+  }, [props.consoleOutput]);
 
   const scrollToBottom = () => {
     consoleContainerRef.current.scrollTo(0, consoleContainerRef.current.scrollHeight);
@@ -21,13 +21,13 @@ export const Console = (props) => {
   };
 
   const consoleOutput = () => {
-    return props.consoleOutput.map((out, index) => {
-      return <ConsoleOutput
+    return props.consoleOutput.map((out, index) => (
+      <ConsoleOutput
         key={index}
         output={out}
         formatted={showFormatted}
       />
-    });
+    ));
   };
 
   const formattedIcon = showFormatted ? 'notes' : 'sort';
