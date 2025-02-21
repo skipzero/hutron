@@ -4,7 +4,7 @@
   "private": true,
   "license": "MIT",
   "devDependencies": {
-    "electron": "^1.7.9",
+    "electron": "^15.5.5",
     "foreman": "^3.0.1",
     "react-scripts": "^3.4.0"
   },
@@ -12,9 +12,9 @@
     "axios": "^0.19.2",
     "concurrently": "^5.1.0",
     "hue-sdk": "^0.1.0",
-    "moment": "^2.24.0",
+    "moment": "^2.29.4",
     "node-hue-api": "^4.0.5",
-    "node-sass": "^4.13.1",
+    "node-sass": "^7.0.0",
     "re-resizable": "^6.2.0",
     "react": "^16.1.1",
     "react-dom": "^16.1.1",
